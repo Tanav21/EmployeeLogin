@@ -30,9 +30,9 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TasksDashboard));
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             lblComplete = new Label();
             lbl1 = new Label();
             label1 = new Label();
@@ -52,11 +52,13 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             taskItemBindingSource1 = new BindingSource(components);
             comboBoxFilter = new ComboBox();
+            panel2 = new Panel();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)taskItemBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)taskItemBindingSource1).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // lblComplete
@@ -65,7 +67,7 @@
             lblComplete.BackColor = Color.Transparent;
             lblComplete.Font = new Font("Nirmala UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblComplete.ForeColor = Color.FromArgb(64, 64, 64);
-            lblComplete.Location = new Point(837, 59);
+            lblComplete.Location = new Point(864, 79);
             lblComplete.Name = "lblComplete";
             lblComplete.Size = new Size(19, 21);
             lblComplete.TabIndex = 16;
@@ -77,11 +79,11 @@
             lbl1.BackColor = Color.Transparent;
             lbl1.Font = new Font("Nirmala UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl1.ForeColor = Color.FromArgb(64, 64, 64);
-            lbl1.Location = new Point(254, 59);
+            lbl1.Location = new Point(281, 79);
             lbl1.Name = "lbl1";
-            lbl1.Size = new Size(93, 21);
+            lbl1.Size = new Size(89, 21);
             lbl1.TabIndex = 17;
-            lbl1.Text = "Total Tasks : ";
+            lbl1.Text = "Total Tasks :";
             // 
             // label1
             // 
@@ -89,7 +91,7 @@
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Nirmala UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(64, 64, 64);
-            label1.Location = new Point(708, 59);
+            label1.Location = new Point(735, 79);
             label1.Name = "label1";
             label1.Size = new Size(133, 21);
             label1.TabIndex = 18;
@@ -101,7 +103,7 @@
             lblTotal.BackColor = Color.Transparent;
             lblTotal.Font = new Font("Nirmala UI", 12F);
             lblTotal.ForeColor = Color.FromArgb(64, 64, 64);
-            lblTotal.Location = new Point(339, 60);
+            lblTotal.Location = new Point(366, 80);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(19, 21);
             lblTotal.TabIndex = 19;
@@ -113,7 +115,7 @@
             lblIncomplete.BackColor = Color.Transparent;
             lblIncomplete.Font = new Font("Nirmala UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblIncomplete.ForeColor = Color.FromArgb(64, 64, 64);
-            lblIncomplete.Location = new Point(590, 59);
+            lblIncomplete.Location = new Point(617, 80);
             lblIncomplete.Name = "lblIncomplete";
             lblIncomplete.Size = new Size(19, 21);
             lblIncomplete.TabIndex = 24;
@@ -125,18 +127,18 @@
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Nirmala UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(64, 64, 64);
-            label4.Location = new Point(460, 59);
+            label4.Location = new Point(487, 79);
             label4.Name = "label4";
-            label4.Size = new Size(138, 21);
+            label4.Size = new Size(134, 21);
             label4.TabIndex = 23;
-            label4.Text = "Incomplete Tasks : ";
+            label4.Text = "Incomplete Tasks :";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Nirmala UI", 16F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(64, 64, 64);
-            label2.Location = new Point(254, 13);
+            label2.Location = new Point(281, 33);
             label2.Name = "label2";
             label2.Size = new Size(175, 30);
             label2.TabIndex = 29;
@@ -149,11 +151,12 @@
             gradientPanel1.Controls.Add(label6);
             gradientPanel1.Controls.Add(label7);
             gradientPanel1.Controls.Add(label8);
+            gradientPanel1.Dock = DockStyle.Left;
             gradientPanel1.GradientBottom = Color.FromArgb(33, 145, 245);
             gradientPanel1.GradientTop = Color.FromArgb(9, 74, 148);
             gradientPanel1.Location = new Point(0, 0);
             gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(248, 561);
+            gradientPanel1.Size = new Size(248, 571);
             gradientPanel1.TabIndex = 31;
             // 
             // pictureBox1
@@ -205,7 +208,7 @@
             // 
             // panel1
             // 
-            panel1.Location = new Point(251, 8);
+            panel1.Location = new Point(278, 28);
             panel1.Name = "panel1";
             panel1.Size = new Size(616, 44);
             panel1.TabIndex = 10;
@@ -221,36 +224,36 @@
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Control;
-            dataGridViewCellStyle4.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = SystemColors.Control;
+            dataGridViewCellStyle7.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = SystemColors.Window;
-            dataGridViewCellStyle5.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
             dataGridView1.GridColor = Color.DimGray;
-            dataGridView1.Location = new Point(254, 84);
+            dataGridView1.Location = new Point(281, 104);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(25, 145, 245);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = SystemColors.Control;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(25, 145, 245);
+            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(801, 464);
             dataGridView1.TabIndex = 30;
@@ -268,29 +271,38 @@
             // 
             comboBoxFilter.DataSource = taskItemBindingSource;
             comboBoxFilter.FormattingEnabled = true;
-            comboBoxFilter.Location = new Point(938, 59);
+            comboBoxFilter.Location = new Point(965, 79);
             comboBoxFilter.Name = "comboBoxFilter";
             comboBoxFilter.Size = new Size(117, 23);
             comboBoxFilter.TabIndex = 32;
             comboBoxFilter.SelectedIndexChanged += comboBoxFilter_SelectedIndexChanged;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(gradientPanel1);
+            panel2.Controls.Add(lblComplete);
+            panel2.Controls.Add(comboBoxFilter);
+            panel2.Controls.Add(lbl1);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(label1);
+            panel2.Controls.Add(lblTotal);
+            panel2.Controls.Add(panel1);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(dataGridView1);
+            panel2.Controls.Add(lblIncomplete);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1207, 571);
+            panel2.TabIndex = 33;
             // 
             // TasksDashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1080, 560);
-            Controls.Add(comboBoxFilter);
-            Controls.Add(label2);
-            Controls.Add(gradientPanel1);
-            Controls.Add(panel1);
-            Controls.Add(dataGridView1);
-            Controls.Add(lblIncomplete);
-            Controls.Add(label4);
-            Controls.Add(lblTotal);
-            Controls.Add(label1);
-            Controls.Add(lbl1);
-            Controls.Add(lblComplete);
+            ClientSize = new Size(1207, 571);
+            Controls.Add(panel2);
             Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "TasksDashboard";
@@ -302,8 +314,9 @@
             ((System.ComponentModel.ISupportInitialize)taskItemBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)taskItemBindingSource1).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -326,5 +339,6 @@
         private ContextMenuStrip contextMenuStrip1;
         private BindingSource taskItemBindingSource1;
         private ComboBox comboBoxFilter;
+        private Panel panel2;
     }
 }

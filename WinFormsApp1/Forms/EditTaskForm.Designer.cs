@@ -43,9 +43,11 @@
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             contextMenuStrip1 = new ContextMenuStrip(components);
             btnSave = new Button();
+            panel2 = new Panel();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)taskItemBindingSource).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // checkIsCompleted
@@ -53,7 +55,7 @@
             checkIsCompleted.AutoSize = true;
             checkIsCompleted.Font = new Font("Nirmala UI", 7.8F);
             checkIsCompleted.ForeColor = Color.FromArgb(64, 64, 64);
-            checkIsCompleted.Location = new Point(216, 107);
+            checkIsCompleted.Location = new Point(224, 113);
             checkIsCompleted.Name = "checkIsCompleted";
             checkIsCompleted.Size = new Size(82, 17);
             checkIsCompleted.TabIndex = 1;
@@ -67,7 +69,7 @@
             inputTask.ForeColor = Color.FromArgb(64, 64, 64);
             inputTask.isPassword = false;
             inputTask.label = "Enter task";
-            inputTask.Location = new Point(216, 57);
+            inputTask.Location = new Point(224, 63);
             inputTask.Name = "inputTask";
             inputTask.Padding = new Padding(0, 0, 0, 1);
             inputTask.Size = new Size(245, 41);
@@ -79,7 +81,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Nirmala UI", 16F, FontStyle.Bold);
             label3.ForeColor = Color.FromArgb(64, 64, 64);
-            label3.Location = new Point(210, 15);
+            label3.Location = new Point(218, 21);
             label3.Name = "label3";
             label3.Size = new Size(212, 30);
             label3.TabIndex = 11;
@@ -92,11 +94,12 @@
             gradientPanel1.Controls.Add(label6);
             gradientPanel1.Controls.Add(label7);
             gradientPanel1.Controls.Add(panel1);
+            gradientPanel1.Dock = DockStyle.Left;
             gradientPanel1.GradientBottom = Color.FromArgb(33, 145, 245);
             gradientPanel1.GradientTop = Color.FromArgb(9, 74, 148);
-            gradientPanel1.Location = new Point(1, 0);
+            gradientPanel1.Location = new Point(0, 0);
             gradientPanel1.Name = "gradientPanel1";
-            gradientPanel1.Size = new Size(203, 473);
+            gradientPanel1.Size = new Size(203, 505);
             gradientPanel1.TabIndex = 16;
             // 
             // pictureBox1
@@ -168,7 +171,7 @@
             btnSave.Cursor = Cursors.Hand;
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(216, 133);
+            btnSave.Location = new Point(224, 139);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(108, 29);
             btnSave.TabIndex = 12;
@@ -176,17 +179,26 @@
             btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click_1;
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(gradientPanel1);
+            panel2.Controls.Add(checkIsCompleted);
+            panel2.Controls.Add(inputTask);
+            panel2.Controls.Add(btnSave);
+            panel2.Controls.Add(label3);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1052, 505);
+            panel2.TabIndex = 18;
+            // 
             // EditTaskForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(712, 471);
-            Controls.Add(inputTask);
-            Controls.Add(label3);
-            Controls.Add(gradientPanel1);
-            Controls.Add(btnSave);
-            Controls.Add(checkIsCompleted);
+            ClientSize = new Size(1052, 505);
+            Controls.Add(panel2);
             Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "EditTaskForm";
@@ -196,8 +208,9 @@
             gradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)taskItemBindingSource).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -214,5 +227,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private ContextMenuStrip contextMenuStrip1;
         private Panel panel1;
+        private Panel panel2;
     }
 }
