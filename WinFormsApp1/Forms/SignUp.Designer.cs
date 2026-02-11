@@ -233,7 +233,7 @@
             // 
             picOpen.BackColor = Color.Transparent;
             picOpen.Image = (Image)resources.GetObject("picOpen.Image");
-            picOpen.Location = new Point(720, 223);
+            picOpen.Location = new Point(720, 220);
             picOpen.Name = "picOpen";
             picOpen.Size = new Size(15, 15);
             picOpen.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -245,7 +245,7 @@
             // 
             picHide.BackColor = Color.Transparent;
             picHide.Image = (Image)resources.GetObject("picHide.Image");
-            picHide.Location = new Point(720, 223);
+            picHide.Location = new Point(720, 220);
             picHide.Name = "picHide";
             picHide.Size = new Size(15, 15);
             picHide.SizeMode = PictureBoxSizeMode.StretchImage;

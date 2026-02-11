@@ -108,5 +108,47 @@ namespace WinFormsApp1.Controller
             }
             return false;
         }
+
+        public bool ResetPassword(string email, string oldPassword, string newPassword)
+        {
+            using (SqlConnection conn = DbConnectionFactory.CreateConnection())
+            {
+                conn.Open();
+
+                string selectQuery = "SELECT password FROM users WHERE email = @email";
+                string hashedPassword;
+
+                using (SqlCommand cmd = new SqlCommand(selectQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@email", email);
+
+                    object result = cmd.ExecuteScalar();
+                    if (result == null)
+                    {
+                        MessageBox.Show("No email exists");
+                        return false;
+                    }
+
+                    hashedPassword = result.ToString();
+                }
+
+                if (!PasswordHasher.VerifyPassword(oldPassword, hashedPassword))
+                {
+                    MessageBox.Show("Old password is incorrect");
+                    return false;
+                }
+
+                string newHashedPassword = PasswordHasher.HashPassword(newPassword);
+
+                string updateQuery = "UPDATE users SET password = @newHashed WHERE email = @email";
+                using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@newHashed", newHashedPassword);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            return true;
+        }
     }
 }
