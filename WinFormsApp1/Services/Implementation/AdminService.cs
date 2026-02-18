@@ -1,28 +1,29 @@
 ﻿using Dapper;
 using System.ComponentModel;
 using System.Data;
+using TestAssignment.Services.Interfaces;
 using WinFormsApp1.Data;
 using WinFormsApp1.Models;
 
-public class UserService
+public class AdminService:IAdminService
 {
     private readonly IDbConnectionFactory _dbFactory;
 
-    public UserService(IDbConnectionFactory dbFactory)
+    public AdminService(IDbConnectionFactory dbFactory)
     {
         _dbFactory = dbFactory;
     }
 
     // ✅ Get All Users
-    public List<UserInfo> GetAllUsers()
+    public async Task<List<UserInfo>> GetAllUsers()
     {
         using IDbConnection conn = _dbFactory.CreateConnection();
 
         string query = @"SELECT Id, Email, CreatedOn
-                         FROM Users
+                         FROM Users 
                          WHERE RefRole = @RoleId";
 
-        var users = conn.Query<UserInfo>(query, new { RoleId = 1 });
+        var users = await conn.QueryAsync<UserInfo>(query, new { RoleId = 1 });
 
         return users.ToList();
     }

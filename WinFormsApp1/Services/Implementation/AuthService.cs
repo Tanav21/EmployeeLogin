@@ -1,11 +1,12 @@
 ﻿using Dapper;
 using System.Data;
 using System.Text.RegularExpressions;
+using TestAssignment.Services.Interfaces;
 using WinFormsApp1.Data;
 using WinFormsApp1.Models;
 using WinFormsApp1.utils;
 
-public class AuthService
+public class AuthService : IAuthService
 {
     private readonly IDbConnectionFactory _dbFactory;
 

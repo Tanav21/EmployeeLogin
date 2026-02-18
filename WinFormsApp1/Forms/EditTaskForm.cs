@@ -10,15 +10,16 @@ using System.Text;
 using System.Windows.Forms;
 using WinFormsApp1.Data;
 using WinFormsApp1.Models;
+using TestAssignment.Services.Interfaces;
 
 namespace WinFormsApp1
 {
     public partial class EditTaskForm : Form
     {
         TaskItem task;
-        private readonly TaskService _taskService;
+        private readonly ITaskService _taskService;
 
-        public EditTaskForm(TaskItem item, TaskService taskService)
+        public EditTaskForm(TaskItem item, ITaskService taskService)
         {
             InitializeComponent();
             task = item;

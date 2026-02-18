@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using TestAssignment.Services.Interfaces;
 using WinFormsApp1.Models;
 using WinFormsApp1.utils;
 
@@ -6,9 +7,9 @@ namespace WinFormsApp1.Controller
 {
     public class AuthController
     {
-        private readonly AuthService _authService;
+        private readonly IAuthService _authService;
 
-        public AuthController(AuthService authService)
+        public AuthController(IAuthService authService)
         {
             _authService = authService;
         }

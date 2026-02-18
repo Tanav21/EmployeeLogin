@@ -1,4 +1,5 @@
 using System.Configuration;
+using TestAssignment.Services.Interfaces;
 using WinFormsApp1.Controller;
 using WinFormsApp1.Data;
 using WinFormsApp1.Models;
@@ -10,10 +11,11 @@ namespace WinFormsApp1
         private readonly AuthController _authController;
         private readonly TaskController _taskController;
         private readonly AdminController _adminController;
+        private readonly AuthService _authService;
         IDbConnectionFactory _dbFactory;
-        TaskService _taskService;
+        ITaskService _taskService;
 
-        public EmployeeLogin(IDbConnectionFactory dbFactory)
+        public EmployeeLogin(IDbConnectionFactory dbFactory, AuthService authService)
         {
             InitializeComponent();
 
@@ -22,9 +24,10 @@ namespace WinFormsApp1
             _dbFactory = dbFactory;
 
             // ✅ Services
-            AuthService authService = new AuthService(_dbFactory);
+            //AuthService authService = new AuthService(_dbFactory);
+            _authService = authService;
             TaskService taskService = new TaskService(_dbFactory);
-            UserService userService = new UserService(_dbFactory);
+            AdminService userService = new AdminService(_dbFactory);
             _taskService = taskService;
             // ✅ Controllers
             _authController = new AuthController(authService);

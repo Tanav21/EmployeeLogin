@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using TestAssignment.Services.Interfaces;
 using WinFormsApp1.Controller;
 using WinFormsApp1.Data;
 
@@ -19,7 +20,7 @@ namespace WinFormsApp1
             //Services
             services.AddScoped<AuthService>();
             services.AddScoped<TaskService>();
-            services.AddScoped<UserService>();
+            services.AddScoped<AdminService>();
 
             //Controllers
             services.AddScoped<AuthController>();
@@ -32,6 +33,10 @@ namespace WinFormsApp1
             services.AddScoped<EmployeeDashboardForm>();
             services.AddScoped<SignUp>();
             services.AddScoped<ResetForm>();
+
+            //Services
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITaskService, TaskService>();
 
             ServiceProvider = services.BuildServiceProvider();
 

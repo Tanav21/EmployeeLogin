@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Text;
 using System.Windows.Forms;
+using TestAssignment.Services.Interfaces;
 using WinFormsApp1.Controller;
 using WinFormsApp1.Models;
 
@@ -17,9 +18,9 @@ namespace WinFormsApp1
         private readonly UserInfo _currentUser;
         private TaskItem _currentlyEditingTask = null;
         private BindingList<TaskItem> _taskBindingList;
-        TaskService _taskService;
+        ITaskService _taskService;
 
-        public EmployeeDashboardForm(UserInfo user, TaskController taskController,TaskService taskService)
+        public EmployeeDashboardForm(UserInfo user, TaskController taskController,ITaskService taskService)
         {
             InitializeComponent();
             _currentUser = user;

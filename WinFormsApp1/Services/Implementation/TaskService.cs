@@ -1,10 +1,11 @@
 ﻿using Dapper;
 using System.ComponentModel;
 using System.Data;
+using TestAssignment.Services.Interfaces;
 using WinFormsApp1.Data;
 using WinFormsApp1.Models;
 
-public class TaskService
+public class TaskService : ITaskService
 {
     private readonly IDbConnectionFactory _dbFactory;
 

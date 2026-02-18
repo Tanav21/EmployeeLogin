@@ -95,11 +95,11 @@ namespace WinFormsApp1
             this.Close();
         }
 
-        private void AdminDashboard_Load(object sender, EventArgs e)
+        private async void AdminDashboard_Load(object sender, EventArgs e)
         {
             int totalUsers = _adminController.CountAllusers();
             lblUsers.Text = totalUsers.ToString();
-            List<UserInfo> userList = _adminController.GetAllUsers();
+            List<UserInfo> userList = await _adminController.GetAllUsers();
             dataGrid.DataSource = userList;
         }
     }

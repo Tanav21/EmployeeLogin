@@ -6,16 +6,16 @@ namespace WinFormsApp1.Controller
 {
     public class AdminController
     {
-        private readonly UserService _userService;
+        private readonly AdminService _userService;
 
-        public AdminController(UserService userService)
+        public AdminController(AdminService userService)
         {
             _userService = userService;
         }
 
-        public List<UserInfo> GetAllUsers()
+        public async Task<List<UserInfo>> GetAllUsers()
         {
-            return _userService.GetAllUsers();
+            return await _userService.GetAllUsers();
         }
         public BindingList<TaskItem> GetAllTasksbyId(int id)
         {
