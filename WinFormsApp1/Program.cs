@@ -37,6 +37,7 @@ namespace WinFormsApp1
             //Services
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<IAdminService, AdminService>();
 
             ServiceProvider = services.BuildServiceProvider();
 
