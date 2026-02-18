@@ -1,17 +1,48 @@
+using Microsoft.Extensions.DependencyInjection;
+using WinFormsApp1.Controller;
+using WinFormsApp1.Data;
+
 namespace WinFormsApp1
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+        public static IServiceProvider ServiceProvider { get; private set; }
+
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            var services = new ServiceCollection();
+
+            services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
+
+
+            //Services
+            services.AddScoped<AuthService>();
+            services.AddScoped<TaskService>();
+            services.AddScoped<UserService>();
+
+            //Controllers
+            services.AddScoped<AuthController>();
+            services.AddScoped<TaskController>();
+            services.AddScoped<AdminController>();
+
+            //Forms
+            services.AddScoped<EmployeeLogin>();
+            services.AddScoped<AdminDashboard>();
+            services.AddScoped<EmployeeDashboardForm>();
+            services.AddScoped<SignUp>();
+            services.AddScoped<ResetForm>();
+
+            ServiceProvider = services.BuildServiceProvider();
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new EmployeeLogin());
+
+            // Create scope for scoped services
+            using (var scope = ServiceProvider.CreateScope())
+            {
+                var loginForm = scope.ServiceProvider.GetRequiredService<EmployeeLogin>();
+                Application.Run(loginForm);
+            }
         }
     }
 }

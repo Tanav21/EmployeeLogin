@@ -17,14 +17,15 @@ namespace WinFormsApp1
         private readonly UserInfo _currentUser;
         private TaskItem _currentlyEditingTask = null;
         private BindingList<TaskItem> _taskBindingList;
+        TaskService _taskService;
 
-
-        public EmployeeDashboardForm(UserInfo user, TaskController taskController)
+        public EmployeeDashboardForm(UserInfo user, TaskController taskController,TaskService taskService)
         {
             InitializeComponent();
             _currentUser = user;
             _taskController = taskController;
             SetupDataGrid();
+            _taskService = taskService;
         }
         private void SetupDataGrid()
         {
@@ -113,7 +114,7 @@ namespace WinFormsApp1
         }
         private void Form2_Load(object sender, EventArgs e)
         {
-            _taskBindingList = _taskController.showTasks(_currentUser.Id);
+            _taskBindingList = _taskController.ShowTasks(_currentUser.Id);
             dataGrid.DataSource = _taskBindingList;
             btnEdit.Enabled = false;
             btnDelete.Enabled = false;
@@ -151,7 +152,7 @@ namespace WinFormsApp1
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            EditTaskForm form = new EditTaskForm(_currentlyEditingTask);
+            EditTaskForm form = new EditTaskForm(_currentlyEditingTask,_taskService);
             form.ShowDialog();
             dataGrid.Refresh();
         }

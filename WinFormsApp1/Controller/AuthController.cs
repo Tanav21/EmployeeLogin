@@ -1,154 +1,70 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Text.RegularExpressions;
-using WinFormsApp1.Data;
 using WinFormsApp1.Models;
 using WinFormsApp1.utils;
+
 namespace WinFormsApp1.Controller
 {
     public class AuthController
     {
+        private readonly AuthService _authService;
+
+        public AuthController(AuthService authService)
+        {
+            _authService = authService;
+        }
 
         public UserInfo Login(string email, string password)
         {
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password)) return null;
             try
-            { 
-                using (SqlConnection conn = DbConnectionFactory.CreateConnection())
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("Auth_Login", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@Email", email);
-
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                string hashedPassword = reader.GetString(reader.GetOrdinal("Password"));
-                                if (!PasswordHasher.VerifyPassword(password, hashedPassword))
-                                    return null;
-
-                                return new UserInfo
-                                {
-                                    Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                                    Email = reader.GetString(reader.GetOrdinal("Email")),
-                                    Role = (UserRole)reader.GetInt32(reader.GetOrdinal("refRole"))
-                                };
-                            }
-                        }
-                    }
-                }
+            {
+                return _authService.Login(email, password);
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Database error: {ex.Message}");
+                return null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
+                return null;
             }
-            return null;
         }
+
         public bool SignUp(string email, string password, UserRole role)
         {
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password)) return false;
-            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-            if (!Regex.IsMatch(email, emailPattern))
-            {
-                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (password.Length < 6)
-            {
-                MessageBox.Show("Password length must be greater than 5");
-                return false;
-            }
-            string hashPassword = PasswordHasher.HashPassword(password);
             try
             {
-                using (SqlConnection conn = DbConnectionFactory.CreateConnection())
-                {
-                    conn.Open();
-                    using (SqlCommand cd = new SqlCommand("Check_Email", conn))
-                    {
-                        cd.CommandType = CommandType.StoredProcedure;
-                        cd.Parameters.AddWithValue("@email", email);
-                        int count = (int)cd.ExecuteScalar();
-                        if (count > 0)
-                        {
-                            MessageBox.Show("Email already exists!");
-                            return false;
-                        }
-                    }
-                    string query = @"Insert into users (Email, Password,refRole) values (@email,@password,@role)";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@email", email);
-                        cmd.Parameters.AddWithValue("@password", hashPassword);
-                        cmd.Parameters.AddWithValue("@role", (int)role);
-                        return cmd.ExecuteNonQuery() > 0;
-                    }
-                }
+                return _authService.SignUp(email, password, role);
             }
             catch (SqlException ex)
             {
-                MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Database error: {ex.Message}");
+                return false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Unexpected error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message);
+                return false;
             }
-            return false;
         }
 
         public bool ResetPassword(string email, string oldPassword, string newPassword)
         {
-            using (SqlConnection conn = DbConnectionFactory.CreateConnection())
+            try
             {
-                conn.Open();
-
-                string selectQuery = "SELECT password FROM users WHERE email = @email";
-                string hashedPassword;
-
-                using (SqlCommand cmd = new SqlCommand(selectQuery, conn))
-                {
-                    cmd.Parameters.AddWithValue("@email", email);
-
-                    object result = cmd.ExecuteScalar();
-                    if (result == null)
-                    {
-                        MessageBox.Show("No email exists");
-                        return false;
-                    }
-
-                    hashedPassword = result.ToString();
-                }
-
-                if (!PasswordHasher.VerifyPassword(oldPassword, hashedPassword))
-                {
-                    MessageBox.Show("Old password is incorrect");
-                    return false;
-                }
-
-                string newHashedPassword = PasswordHasher.HashPassword(newPassword);
-
-                string updateQuery = "UPDATE users SET password = @newHashed WHERE email = @email";
-                using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
-                {
-                    cmd.Parameters.AddWithValue("@newHashed", newHashedPassword);
-                    cmd.Parameters.AddWithValue("@email", email);
-                    cmd.ExecuteNonQuery();
-                }
+                return _authService.ResetPassword(email, oldPassword, newPassword);
             }
-            return true;
+            catch (SqlException ex)
+            {
+                MessageBox.Show($"Database error: {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
         }
     }
 }

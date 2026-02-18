@@ -16,10 +16,13 @@ namespace WinFormsApp1
     public partial class EditTaskForm : Form
     {
         TaskItem task;
-        public EditTaskForm(TaskItem item)
+        private readonly TaskService _taskService;
+
+        public EditTaskForm(TaskItem item, TaskService taskService)
         {
             InitializeComponent();
             task = item;
+            _taskService = taskService;
         }
 
         private void Form5_Load(object sender, EventArgs e)
@@ -33,28 +36,7 @@ namespace WinFormsApp1
             task.Description = inputTask.TextValue.Trim();
             task.IsCompleted = checkIsCompleted.Checked;
             task.UpdatedOn = DateTime.Now;
-            using (SqlConnection conn = DbConnectionFactory.CreateConnection())
-            {
-                conn.Open();
-
-                string query = @"Update tasks set description = @Desc,isCompleted = @isCompleted, updatedOn = @updatedOn where taskId = @taskId";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Desc", task.Description);
-                    cmd.Parameters.AddWithValue("@taskId", task.TaskId);
-                    cmd.Parameters.AddWithValue("@isCompleted", task.IsCompleted);
-                    cmd.Parameters.AddWithValue("@updatedOn", DateTime.Now);
-                    int rows = cmd.ExecuteNonQuery();
-                    if (rows == 0)
-                    {
-                        MessageBox.Show("No rows were updated. Check TaskId value.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Task updated successfully!");
-                    }
-                }
-            }
+           _taskService.UpdateTask(task);
             this.Close();
         }
     }

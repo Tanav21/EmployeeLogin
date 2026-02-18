@@ -1,15 +1,20 @@
-﻿using System.Configuration;
-using Microsoft.Data.SqlClient;
-
+﻿using Microsoft.Data.SqlClient;
+using System.Configuration;
+using System.Data;
 
 namespace WinFormsApp1.Data
 {
-    public static class DbConnectionFactory
+    public class DbConnectionFactory : IDbConnectionFactory
     {
-        private static readonly string _connectionString =
-            ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
+        private readonly string _connectionString;
 
-        public static SqlConnection CreateConnection()
+        public DbConnectionFactory()
+        {
+            _connectionString =
+                ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
+        }
+
+        public IDbConnection CreateConnection()
         {
             return new SqlConnection(_connectionString);
         }

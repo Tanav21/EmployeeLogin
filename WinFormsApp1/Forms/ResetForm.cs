@@ -16,10 +16,11 @@ namespace WinFormsApp1
 {
     public partial class ResetForm : Form
     {
-        AuthController _authController = new AuthController();
-        public ResetForm()
+        AuthController _authController;
+        public ResetForm(AuthController authController)
         {
             InitializeComponent();
+            _authController = authController;
         }
 
         private void btnReset_Click(object sender, EventArgs e)
