@@ -95,9 +95,18 @@ namespace WinFormsApp1
 
             if (btnAdd.Text == "Add")
             {
+                if (description == "")
+                {
+                    MessageBox.Show("Task description cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (description.Length > 60)
+                {
+                    MessageBox.Show("Task description cannot exceed 60 characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 TaskItem newTask = _taskController.AddTask(_currentUser.Id, description);
                 _taskBindingList.Add(newTask);
-                dataGrid.Refresh();
                 loginTextBox1.Clear();
             }
             else if (btnAdd.Text == "Save")
@@ -105,7 +114,6 @@ namespace WinFormsApp1
                 if (_currentlyEditingTask != null)
                 {
                     _currentlyEditingTask.Description = description;
-                    dataGrid.Refresh();
                     MessageBox.Show("Task updated successfully!");
                     btnAdd.Text = "Add";
                     loginTextBox1.Clear();
@@ -155,7 +163,6 @@ namespace WinFormsApp1
         {
             EditTaskForm form = new EditTaskForm(_currentlyEditingTask,_taskService);
             form.ShowDialog();
-            dataGrid.Refresh();
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -169,7 +176,7 @@ namespace WinFormsApp1
                 _taskBindingList.Remove(_currentlyEditingTask);
                 if (_taskController.DeleteTask(_currentlyEditingTask.TaskId))
                 {
-                    MessageBox.Show("Task deleted successfully!");
+                    MessageBox.Show("Task deleted successfully!","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
             }
             btnDelete.Enabled = false;

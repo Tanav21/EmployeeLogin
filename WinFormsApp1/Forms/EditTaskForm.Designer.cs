@@ -44,6 +44,7 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             btnSave = new Button();
             panel2 = new Panel();
+            label1 = new Label();
             gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)taskItemBindingSource).BeginInit();
@@ -55,7 +56,7 @@
             checkIsCompleted.AutoSize = true;
             checkIsCompleted.Font = new Font("Nirmala UI", 7.8F);
             checkIsCompleted.ForeColor = Color.FromArgb(64, 64, 64);
-            checkIsCompleted.Location = new Point(224, 113);
+            checkIsCompleted.Location = new Point(219, 134);
             checkIsCompleted.Name = "checkIsCompleted";
             checkIsCompleted.Size = new Size(82, 17);
             checkIsCompleted.TabIndex = 1;
@@ -69,7 +70,7 @@
             inputTask.ForeColor = Color.FromArgb(64, 64, 64);
             inputTask.isPassword = false;
             inputTask.label = "Enter task";
-            inputTask.Location = new Point(224, 63);
+            inputTask.Location = new Point(219, 84);
             inputTask.Name = "inputTask";
             inputTask.Padding = new Padding(0, 0, 0, 1);
             inputTask.Size = new Size(245, 41);
@@ -171,7 +172,7 @@
             btnSave.Cursor = Cursors.Hand;
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(224, 139);
+            btnSave.Location = new Point(219, 160);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(108, 29);
             btnSave.TabIndex = 12;
@@ -181,6 +182,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(label1);
             panel2.Controls.Add(gradientPanel1);
             panel2.Controls.Add(checkIsCompleted);
             panel2.Controls.Add(inputTask);
@@ -192,6 +194,18 @@
             panel2.Size = new Size(1052, 505);
             panel2.TabIndex = 18;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Nirmala UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
+            label1.Location = new Point(219, 61);
+            label1.Name = "label1";
+            label1.Size = new Size(88, 13);
+            label1.TabIndex = 18;
+            label1.Text = "Old Description";
+            label1.Click += label1_Click;
+            // 
             // EditTaskForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -202,6 +216,7 @@
             Font = new Font("Nirmala UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "EditTaskForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "EditTaskForm";
             Load += Form5_Load;
             gradientPanel1.ResumeLayout(false);
@@ -228,5 +243,6 @@
         private ContextMenuStrip contextMenuStrip1;
         private Panel panel1;
         private Panel panel2;
+        private Label label1;
     }
 }

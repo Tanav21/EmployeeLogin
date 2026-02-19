@@ -238,6 +238,7 @@
             Controls.Add(label3);
             ForeColor = Color.White;
             Name = "AdminDashboard";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin Dashboard";
             Load += AdminDashboard_Load;
             gradientPanel1.ResumeLayout(false);

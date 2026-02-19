@@ -1,14 +1,15 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.ComponentModel;
+using TestAssignment.Services.Interfaces;
 using WinFormsApp1.Models;
 
 namespace WinFormsApp1.Controller
 {
     public class AdminController
     {
-        private readonly AdminService _userService;
+        private readonly IAdminService _userService;
 
-        public AdminController(AdminService userService)
+        public AdminController(IAdminService userService)
         {
             _userService = userService;
         }
